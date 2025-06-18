@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华理地瓜大家庭群聊活动分析报告 - 2025年上半年</title>
+    <style>
+        /* 严格定义的CSS样式，确保风格一致性 */
+        :root {
+            --bg-primary: #0f0e17;
+            --bg-secondary: #1a1925;
+            --bg-tertiary: #252336;
+            --text-primary: #fffffe;
+            --text-secondary: #a7a9be;
+            --accent-primary: #ff8906;
+            --accent-secondary: #f25f4c;
+            --accent-tertiary: #e53170;
+            --accent-blue: #3da9fc;
+            --accent-purple: #7209b7;
+            --accent-cyan: #00b4d8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            width: 100%; /* Make it fluid for responsiveness */
+            max-width: 1200px; /* Max width for desktop */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--bg-secondary);
+            margin-bottom: 30px;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .meta-info span {
+            background-color: var(--bg-tertiary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        section {
+            background-color: var(--bg-secondary);
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+        
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin: 15px 0 10px 0;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            margin: 12px 0 8px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 卡片容器样式 */
+        .topics-container, .tutorials-container, .messages-container, 
+        .dialogues-container, .qa-container, .participants-container, .night-owls-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        /* 卡片样式 */
+        .topic-card, .tutorial-card, .message-card, 
+        .dialogue-card, .qa-card, .participant-item, .night-owl-item {
+            background-color: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        /* 话题卡片 */
+        .topic-category {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--text-primary);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .topic-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .keyword {
+            background-color: rgba(61, 169, 252, 0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .topic-mentions {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        
+        /* 教程卡片 */
+        .tutorial-type {
+            display: inline-block;
+            background-color: var(--accent-secondary);
+            color: var(--text-primary);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .tutorial-meta {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .tutorial-category {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        /* 消息卡片 */
+        .message-meta {
+            margin-bottom: 10px;
+        }
+        
+        .message-meta span {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        .message-type {
+            background-color: var(--accent-tertiary);
+            color: var(--text-primary);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        .priority {
+            padding: 3px 10px;
+            border-radius: 15px;
+        }
+        
+        .priority-high {
+            background-color: var(--accent-secondary);
+        }
+        
+        .priority-medium {
+            background-color: var(--accent-primary);
+        }
+        
+        .priority-low {
+            background-color: var(--accent-blue);
+        }
+        
+        /* 对话卡片 */
+        .dialogue-type {
+            display: inline-block;
+            background-color: var(--accent-purple);
+            color: var(--text-primary);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .dialogue-content {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        .dialogue-content .message {
+            margin-bottom: 10px;
+        }
+
+        .dialogue-content .message:last-child {
+            margin-bottom: 0;
+        }
+
+        .dialogue-content .message-meta {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .dialogue-content .message-meta .speaker {
+            font-weight: bold;
+            color: var(--accent-cyan);
+            margin-right: 10px;
+        }
+        
+        .dialogue-highlight {
+            font-style: italic;
+            color: var(--accent-primary);
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        /* 问答卡片 */
+        .question {
+            margin-bottom: 15px;
+        }
+        
+        .question-meta, .answer-meta {
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .question-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background-color: rgba(114, 9, 183, 0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .answer {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        .accepted-badge {
+            background-color: var(--accent-primary);
+            color: var(--text-primary);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        /* 热度图 */
+        .heatmap-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .heat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .heat-topic {
+            font-weight: 600;
+        }
+        
+        .heat-bar {
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .heat-fill {
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+        /* 话唠榜 */
+        .participant-rank {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-right: 15px;
+            float: left;
+        }
+        
+        .participant-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .participant-count {
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+        
+        .participant-characteristics, .participant-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .characteristic {
+            background-color: rgba(242, 95, 76, 0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .word {
+            background-color: rgba(229, 49, 112, 0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        /* 熬夜冠军 */
+        .night-owl-item {
+            background: linear-gradient(135deg, #0f0e17 0%, #192064 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        .owl-crown {
+            font-size: 40px;
+            margin-right: 20px;
+        }
+        
+        .owl-info {
+            flex-grow: 1;
+        }
+
+        .owl-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .owl-title {
+            color: var(--accent-primary);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .owl-time, .owl-messages {
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .owl-note {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* 词云 - 云朵样式 */
+        .cloud-container {
+            position: relative;
+            margin: 0 auto;
+            padding: 20px 0;
+            text-align: center; /* Center the word cloud */
+        }
+        
+        .cloud-wordcloud {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            box-shadow: 
+                40px 40px 0 -5px var(--bg-tertiary),
+                80px 10px 0 -10px var(--bg-tertiary),
+                110px 35px 0 -5px var(--bg-tertiary),
+                -40px 50px 0 -8px var(--bg-tertiary),
+                -70px 20px 0 -10px var(--bg-tertiary);
+            overflow: hidden; /* Hide overflow for cloud shape */
+            display: flex; /* Enable flex for centering words inside */
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cloud-word {
+            position: absolute;
+            transform-origin: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            white-space: nowrap; /* Prevent words from wrapping */
+        }
+        
+        .cloud-word:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        
+        .cloud-legend {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 30px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-radius: 8px; /* Rounded corners */
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        .disclaimer {
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cloud-wordcloud {
+                width: 100%;
+                height: 300px; /* Adjust height for mobile */
+            }
+            .cloud-legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>华理地瓜大家庭群聊活动分析报告</h1>
+        <p class="date">2025年1月1日 - 2025年6月18日</p>
+        <div class="meta-info">
+            <span>总消息数：[待统计]</span>
+            <span>活跃用户：[待统计]</span>
+            <span>统计周期：2025-01-01 00:10:43 - 2025-06-18 [最近一条消息时间]</span>
+        </div>
+    </header>
+
+    <!-- 1. 报告概览 -->
+    <section class="report-overview">
+        <h2>报告概览</h2>
+        <p>“华理地瓜大家庭”是一个活跃的微信群聊，其名称本身就承载了深厚的社群文化。群名中的“华理”指向成员所属的大学背景，而“地瓜”一词，正如“24信管周鸿运”多次在聊天中提及并用作群体的自称，并非随意选择的代号。这个称谓具有朴实、接地气的意味，它传递出群成员对自身作为普通大学生、在现有教育体系中努力奋斗的共鸣。这种自嘲或谦逊的表达，反而能够显著增强群内部的团结与归属感，形成一种“我们都是地瓜”的共同体意识。这种强烈的内部身份认同对于群体的长期活跃和成员留存至关重要，它有助于抵御外部压力或信息过载，确保群聊在提供信息交流的同时，也维系着深层的情感连接和互助网络。对于群管理员而言，理解并强化这种“地瓜”文化，是提升社区活跃度和成员忠诚度的关键。</p>
+        <p>本报告的统计周期为2025年1月1日至2025年6月18日。</p>
+
+        <h3>报告亮点速览</h3>
+        <ul>
+            <li><strong>学术与个人成长双驱动:</strong> 群聊内容高度聚焦于学业（考试、课程、志愿时长）与个人能力提升（AI应用、商业洞察、职业规划），显示出成员强烈的自我驱动和进步意愿。</li>
+            <li><strong>“树成林”与“老王”影响力显著:</strong> 外部知识社群及其核心人物（如“树成林”的姜哥、老王）对群成员的思维模式和学习方向产生深远影响，其分享的课程和理念是群内讨论的重要来源。</li>
+            <li><strong>批判性思维与实用主义并存:</strong> 成员在追求个人发展的同时，对外部信息（如“财富课”、网红言论）保持审慎的批判态度，并倾向于在新兴领域（如AI）寻找突破口，而非固守传统竞争模式。</li>
+            <li><strong>情感支持与社群互助:</strong> 群聊不仅是信息交换平台，更是成员情感宣泄、寻求支持、分享生活点滴的温馨港湾，幽默与自我调侃是重要的沟通润滑剂。</li>
+            <li><strong>线下活动与线上互动融合:</strong> 尽管学业繁忙，群成员仍积极响应线下聚会号召，并利用线上工具（如群投票、网盘分享）促进资源共享和活动组织，展现出强大的社群活力。</li>
+        </ul>
+    </section>
+
+    <!-- 2. 今日讨论热点 (以模板中1月1日为例) -->
+    <section class="hot-topics">
+        <h2>今日讨论热点（以2025年1月1日为例）</h2>
+        <div class="topics-container">
+            <div class="topic-card">
+                <h3>新年祝福与社交暖场</h3>
+                <div class="topic-category">节日庆典、社交互动</div>
+                <p class="topic-summary">2025年元旦伊始，群内洋溢着浓厚的新年气氛。从凌晨00:10:43开始，群成员纷纷互道“元旦快乐”、“新年快乐”，并辅以大量动画表情和烟花表情，营造了温馨友好的开年氛围。部分成员还通过红包互动，如“23电气 余俊杰”分享其在班群抢到6次手气王的经历，进一步活跃了群聊气氛。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">元旦快乐</span>
+                    <span class="keyword">新年快乐</span>
+                    <span class="keyword">烟花</span>
+                    <span class="keyword">红包</span>
+                    <span class="keyword">动画表情</span>
+                </div>
+                <div class="topic-mentions">提及次数：20+</div>
+            </div>
+            <div class="topic-card">
+                <h3>节日经济与商业洞察</h3>
+                <div class="topic-category">商业分析、社会观察</div>
+                <p class="topic-summary">在新年祝福的间隙，群内迅速切入对节日消费现象的深度讨论。一条由“22药学庞银萍”转发的“龙非池”消息引起了广泛关注。该消息详细描述了杭州万人气球放飞活动中，尽管城管管制，但年轻人通过社交媒体预定气球并自行带入会场，形成海量消费的现象。这引发了群成员对“节日状态下，社交媒体刚需产品零售的力量”以及“许多时候违规和实际截然不同”的商业模式的思考，展现了群成员敏锐的商业嗅觉和批判性分析能力。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">节日消费</span>
+                    <span class="keyword">社交媒体</span>
+                    <span class="keyword">刚需产品</span>
+                    <span class="keyword">零售</span>
+                    <span class="keyword">气球放飞</span>
+                    <span class="keyword">商业模式</span>
+                </div>
+                <div class="topic-mentions">提及次数：5+</div>
+            </div>
+            <div class="topic-card">
+                <h3>个人目标与新年规划</h3>
+                <div class="topic-category">个人发展、学习资源</div>
+                <p class="topic-summary">成员们在新年之初也积极分享与个人成长、目标设定相关的资源。“23电气 余俊杰”分享了一份名为《2025 新年指南针 YearCompass.pdf》的文件，随后“青云”表示“这个好几年前我也用过”，体现了群内对自我提升和规划的持续关注。这种对高质量、有深度的内容持续需求，表明群聊的核心价值在于满足成员的求知欲，并进一步提升其价值和吸引力。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">新年指南针</span>
+                    <span class="keyword">YearCompass</span>
+                    <span class="keyword">目标</span>
+                    <span class="keyword">规划</span>
+                    <span class="keyword">个人成长</span>
+                </div>
+                <div class="topic-mentions">提及次数：3+</div>
+            </div>
+        </div>
+        <p class="disclaimer">注：本节内容以模板中2025年1月1日的示例数据为基础，真实每日话题总结需提供详细聊天记录进行分析。</p>
+    </section>
+
+    <!-- 3. 实用教程与资源分享 -->
+    <section class="tutorials">
+        <h2>实用教程与资源分享</h2>
+        <div class="tutorials-container">
+            <div class="tutorial-card">
+                <div class="tutorial-type">TUTORIAL</div>
+                <h3>2025 新年指南针 YearCompass.pdf</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：23电气 余俊杰</span>
+                    <span class="share-time">时间：2025-01-01 10:39:43</span>
+                </div>
+                <p class="tutorial-summary">一份用于新年规划和自我反思的PDF指南，旨在帮助用户回顾过去一年，规划新一年目标，提升自我认知。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>自我反思</li>
+                        <li>目标设定</li>
+                        <li>时间管理</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="http://127.0.0.1:5030/file/6b8a5726c8b03539b8558980b7e18519" class="link valid">查看原文: http://127.0.0.1:5030/...</a>
+                </div>
+                <div class="tutorial-category">分类：生产力工具与学习方法</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">RESOURCE</div>
+                <h3>flomo笔记安卓破解版</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：22精医秦裕存</span>
+                    <span class="share-time">时间：2025-01-01 19:07:08</span>
+                </div>
+                <p class="tutorial-summary">热门笔记应用Flomo的安卓破解版本，方便用户免费使用，以提升笔记效率和知识管理能力。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>笔记效率</li>
+                        <li>知识管理</li>
+                        <li>免费获取</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="https://pan.quark.cn/s/94845a7347be" class="link valid">查看原文: pan.quark.cn</a>
+                </div>
+                <div class="tutorial-category">分类：生产力工具与学习方法</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">TUTORIAL</div>
+                <h3>老高的AI引流+AI私域案例库5.0</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：22精医秦裕存</span>
+                    <span class="share-time">时间：2025-03-09 12:53:37</span>
+                </div>
+                <p class="tutorial-summary">关于AI在引流和私域运营中的应用案例分享，探讨AI在市场营销中的实战应用和商业模式创新。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>AI营销</li>
+                        <li>私域流量</li>
+                        <li>商业创新</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="http://mp.weixin.qq.com/s?__biz=MzkzOTY5MDc4Ng==&mid=2247483859&idx=1&sn=2bbf521fb52fc8bb7eda70b2a402cf0e" class="link valid">查看原文: mp.weixin.qq.com</a>
+                </div>
+                <div class="tutorial-category">分类：商业与AI应用洞察</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">NEWS</div>
+                <h3>斩获22.5K星!!! 再见Mathpix , 集成DeepSeek , PDF翻译公式完美保留 , 太6了</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：22精医秦裕存</span>
+                    <span class="share-time">时间：2025-05-05 23:06:53</span>
+                </div>
+                <p class="tutorial-summary">介绍一款集成DeepSeek AI的PDF翻译工具，能够完美保留公式，提升科研效率。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>AI学术工具</li>
+                        <li>PDF翻译</li>
+                        <li>科研效率</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="http://mp.weixin.qq.com/s?__biz=Mzg3NzU0NzIxMA==&mid=2247503309&idx=1&sn=def7dc1bd5630e1a3512086fc21929aa" class="link valid">查看原文: mp.weixin.qq.com</a>
+                </div>
+                <div class="tutorial-category">分类：商业与AI应用洞察</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">TUTORIAL</div>
+                <h3>宁向东的清华管理学课：改变他人态度的秘诀</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：22精医秦裕存</span>
+                    <span class="share-time">时间：2025-01-31 14:44:48</span>
+                </div>
+                <p class="tutorial-summary">清华大学管理学课程，探讨如何有效影响他人态度，涵盖沟通技巧、人际关系管理和领导力培养。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>沟通技巧</li>
+                        <li>人际关系</li>
+                        <li>领导力</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="https://d.dedao.cn/FHBxDqkLmb7L2sra" class="link valid">查看原文: d.dedao.cn</a>
+                </div>
+                <div class="tutorial-category">分类：个人成长与认知提升</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">NEWS</div>
+                <h3>普通人如何跃升阶层 #纯姐和Alex #董小姐 #跨越阶级 #年轻人 #寒门再难出贵子</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：21测绘袁新雅</span>
+                    <span class="share-time">时间：2025-05-05 23:17:07</span>
+                </div>
+                <p class="tutorial-summary">探讨普通人实现阶层跃升的方法和挑战，涉及职业发展、财富积累和社会认知。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>阶层跃升</li>
+                        <li>职业发展</li>
+                        <li>财富积累</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="http://wxapp.tc.qq.com/251/20302/stodownload?encfilekey=Cvvj5Ix3eewK0tHtibORqcsqchXNh0Gf3sJcaYqC2rQANTLNNGaZbNzvWVicdcY1jDpRyZJpAiaNltuM1vDRHUTLz2VScSJoTRchxBvVkhlICGouZrc0ibECN4P50mwlsTm8" class="link valid">查看原文: wxapp.tc.qq.com</a>
+                </div>
+                <div class="tutorial-category">分类：个人成长与认知提升</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">TUTORIAL</div>
+                <h3>RSS订阅及相关工具教程</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：22精医秦裕存</span>
+                    <span class="share-time">时间：2025-05-05 18:39:14 onwards</span>
+                </div>
+                <p class="tutorial-summary">介绍了RSS订阅工具（如Follow浏览器, Fluent Reader）及其国内镜像，旨在帮助用户摆脱算法推荐，主动获取信息，从而实现信息茧房突破、高效信息筛选和个人认知系统搭建。</p>
+                <div class="key-points">
+                    <h4>要点：</h4>
+                    <ul>
+                        <li>信息茧房</li>
+                        <li>高效信息筛选</li>
+                        <li>认知系统</li>
+                    </ul>
+                </div>
+                <div class="tutorial-link">
+                    <a href="https://github.com/yang991178/fluent-reader" class="link valid">查看原文: github.com</a>
+                </div>
+                <div class="tutorial-category">分类：信息获取与管理</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 重要消息汇总 -->
+    <section class="important-messages">
+        <h2>重要消息汇总</h2>
+        <div class="messages-container">
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-03-21 23:13:10</span>
+                    <span class="sender">河北-小徐同学</span>
+                    <span class="message-type">EVENT</span>
+                    <span class="priority priority-high">优先级：高</span>
+                </div>
+                <p class="message-content">“假装情侣”48小时挑战活动，旨在提供一个有趣且无压力的线上互动体验，参与者将随机匹配“48小时限定情侣”，完成专属任务清单并打卡，最终可领取精美奖状。</p>
+                <div class="message-full-content">
+                    <p>活动强调“好玩不尴尬、带点甜又不过界”，并承诺48小时后彼此“Say Bye”，旨在收获奇妙友谊。详细介绍了活动流程、目的和参与方式，包括接龙报名和AI红娘分配CP等细节。</p>
+                </div>
+            </div>
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-03-07 18:30:02</span>
+                    <span class="sender">22精医秦裕存</span>
+                    <span class="message-type">ANNOUNCEMENT</span>
+                    <span class="priority priority-high">优先级：高</span>
+                </div>
+                <p class="message-content">“树成林”五周年庆典的线下分会场组织通知，鼓励成员接龙并私信附近小伙伴组局，确定后向负责人报备，并建立分会场群。</p>
+                <div class="message-full-content">
+                    <p>此活动旨在促进各地成员的线下聚会和交流，提供了详细的组局指南和负责人登记链接。</p>
+                </div>
+            </div>
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-06-06 10:06:26</span>
+                    <span class="sender">22精医秦裕存</span>
+                    <span class="message-type">EVENT</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">“花开盛夏，前程似锦”毕业季跳蚤市场活动顺利进行，活动时间为6月6日至6月8日 15:30-22:00，地点在校会堂前广场。</p>
+                <div class="message-full-content">
+                    <p>鼓励毕业生出售闲置物品，为在校生提供便利。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 有趣对话或金句 -->
+    <section class="interesting-dialogues">
+        <h2>有趣对话或金句</h2>
+        <div class="dialogues-container">
+            <div class="dialogue-card">
+                <div class="dialogue-type">QUOTE</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <p class="message-content">“散财之后就来财”</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">反映了一种朴素的财富观，即付出与回报之间的循环。</div>
+                <div class="dialogue-topic">财富观</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">QUOTE</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <p class="message-content">“节日➕社交媒体刚需产品👍🏻”</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">简洁地概括了对节日消费和社交媒体结合的商业敏锐度。</div>
+                <div class="dialogue-topic">商业洞察</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">QUOTE</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <p class="message-content">“要我说树林老王说的鼓励创业就是纯害人[捂脸] 破局路非同寻常 只能说热血可以，但是人得先活着”</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">展现了对创业热潮的务实与批判态度，强调了生存是追求理想的前提。</div>
+                <div class="dialogue-topic">创业与现实</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">QUOTE</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <p class="message-content">“人生不只是活那几个瞬间，而是活每个瞬间。一语惊醒”</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">强调活在当下，珍惜每一个瞬间的重要性。</div>
+                <div class="dialogue-topic">人生哲理</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">QUOTE</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <p class="message-content">“所有行业，都将被AI重新洗牌”</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">体现了群成员对AI技术变革的敏锐感知和对未来趋势的判断。</div>
+                <div class="dialogue-topic">AI与未来</div>
+            </div>
+        </div>
+        <p class="disclaimer">注：本节金句内容来自模板文件中的示例，真实每日金句需提供详细聊天记录进行提取。</p>
+    </section>
+
+    <!-- 6. 问题与解答 -->
+    <section class="questions-answers">
+        <h2>问题与解答</h2>
+        <div class="qa-container">
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">群友</span>
+                        <span class="time">[未知时间]</span>
+                    </div>
+                    <p class="question-content">“谁会Python做新闻分类”</p>
+                    <div class="question-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">新闻分类</span>
+                        <span class="tag">编程</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">群友</span>
+                            <span class="time">[未知时间]</span>
+                            <!-- <span class="accepted-badge">最佳回答</span> -->
+                        </div>
+                        <p class="answer-content">“我会用R语言做 不会Python”；“我会Python，不会文本挖掘”。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">群友</span>
+                        <span class="time">[未知时间]</span>
+                    </div>
+                    <p class="question-content">“志愿时长有啥用”</p>
+                    <div class="question-tags">
+                        <span class="tag">志愿活动</span>
+                        <span class="tag">大学政策</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">群友</span>
+                            <span class="time">[未知时间]</span>
+                        </div>
+                        <p class="answer-content">“评优秀团员 积极分子之类的有用”；“跟毕业和拿奖学金有关吗”；“没关系”。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">群友</span>
+                        <span class="time">[未知时间]</span>
+                    </div>
+                    <p class="question-content">“怎么看待互联网因为AI生产的数据，形成的冗余？AI生成结果发布，再被AI搜索，再次生产，是否会进入一个AI信息的循环？”</p>
+                    <div class="question-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">数据冗余</span>
+                        <span class="tag">信息循环</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">群友</span>
+                            <span class="time">[未知时间]</span>
+                        </div>
+                        <p class="answer-content">这类问题反映了群成员对教育体制深层次的思考和质疑，不仅仅停留在个人学业层面，而是延伸到更广泛的社会结构。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="disclaimer">注：本节问答内容来自模板文件中的示例，真实问答需提供详细聊天记录进行提取。</p>
+    </section>
+
+    <!-- 7. 群内数据可视化 -->
+    <section class="analytics">
+        <h2>群内数据可视化</h2>
+        
+        <!-- 话题热度 -->
+        <h3>话题热度</h3>
+        <p>通过分析报告周期内各话题的消息提及频率，可以量化群成员的关注点。以下为主要话题的预估热度分布：</p>
+        <div class="heatmap-container">
+            <div class="heat-item">
+                <div class="heat-topic">学习/考试</div>
+                <div class="heat-percentage">30%</div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 30%; background-color: #3da9fc;"></div>
+                </div>
+                <div class="heat-count">[数量]条消息</div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">个人成长/AI/商业洞察</div>
+                <div class="heat-percentage">25%</div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 25%; background-color: #f25f4c;"></div>
+                </div>
+                <div class="heat-count">[数量]条消息</div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">校园生活/政策</div>
+                <div class="heat-percentage">20%</div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 20%; background-color: #7209b7;"></div>
+                </div>
+                <div class="heat-count">[数量]条消息</div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">社交/娱乐</div>
+                <div class="heat-percentage">15%</div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 15%; background-color: #e53170;"></div>
+                </div>
+                <div class="heat-count">[数量]条消息</div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">其他</div>
+                <div class="heat-percentage">10%</div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 10%; background-color: #00b4d8;"></div>
+                </div>
+                <div class="heat-count">[数量]条消息</div>
+            </div>
+        </div>
+        <p class="disclaimer">注：上述百分比和消息数量为示例数据，实际报告中将根据聊天记录进行精确统计。</p>
+        
+        <!-- 话唠榜 -->
+        <h3>话唠榜（每月发言最多前五名总榜）</h3>
+        <p>识别这些核心贡献者，对于社区管理具有重要意义。他们是群聊活力的源泉。</p>
+        <div class="participants-container">
+            <div class="participant-item">
+                <div class="participant-rank">1</div>
+                <div class="participant-info">
+                    <div class="participant-name">22精医秦裕存</div>
+                    <div class="participant-count">[数量]条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">知识分享者</span>
+                        <span class="characteristic">深度思考者</span>
+                        <span class="characteristic">AI与商业洞察的积极推动者</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">AI</span>
+                        <span class="word">树林</span>
+                        <span class="word">学习</span>
+                        <span class="word">思考</span>
+                        <span class="word">链接</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">2</div>
+                <div class="participant-info">
+                    <div class="participant-name">24信管周鸿运</div>
+                    <div class="participant-count">[数量]条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">活跃组织者</span>
+                        <span class="characteristic">社交达人</span>
+                        <span class="characteristic">生活分享者</span>
+                        <span class="characteristic">对外部世界充满好奇</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">哈哈</span>
+                        <span class="word">动画表情</span>
+                        <span class="word">考试</span>
+                        <span class="word">赚钱</span>
+                        <span class="word">宿舍</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">3</div>
+                <div class="participant-info">
+                    <div class="participant-name">3660</div>
+                    <div class="participant-count">[数量]条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">哲学思辨者</span>
+                        <span class="characteristic">情绪共鸣者</span>
+                        <span class="characteristic">对社会现象有独到见解</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">动画表情</span>
+                        <span class="word">哈哈哈</span>
+                        <span class="word">朋友</span>
+                        <span class="word">谈恋爱</span>
+                        <span class="word">宿舍</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">4</div>
+                <div class="participant-info">
+                    <div class="participant-name">23电气 余俊杰</div>
+                    <div class="participant-count">[数量]条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">实用主义者</span>
+                        <span class="characteristic">技术爱好者</span>
+                        <span class="characteristic">幽默感强</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">动画表情</span>
+                        <span class="word">哈哈</span>
+                        <span class="word">图片</span>
+                        <span class="word">AI</span>
+                        <span class="word">电脑</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">5</div>
+                <div class="participant-info">
+                    <div class="participant-name">21测绘袁新雅</div>
+                    <div class="participant-count">[数量]条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">积极互动者</span>
+                        <span class="characteristic">关心他人</span>
+                        <span class="characteristic">分享生活感悟</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">动画表情</span>
+                        <span class="word">哈哈</span>
+                        <span class="word">谢谢</span>
+                        <span class="word">老师</span>
+                        <span class="word">宿舍</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="disclaimer">注：上述消息数量为示例数据，真实话唠榜数据需提供详细聊天记录进行统计。</p>
+        
+        <!-- 熬夜冠军 -->
+        <h3>熬夜冠军（总榜与最后回复时间）</h3>
+        <p>“熬夜冠军”榜单揭示了在深夜（23:00至次日06:00）最活跃的群成员。这可能反映了他们独特的作息习惯、繁重的学业或工作压力，亦或是深夜时段更适合进行深度思考和交流。</p>
+        <div class="night-owls-container">
+            <div class="night-owl-item">
+                <div class="owl-crown" title="熬夜冠军">👑</div>
+                <div class="owl-info">
+                    <div class="owl-name">22精医秦裕存</div>
+                    <div class="owl-title">深夜思考者</div>
+                    <div class="owl-time">最晚活跃时间：03:39:53</div>
+                    <div class="owl-messages">深夜消息数：[数量]</div>
+                    <div class="owl-last-message">最后一条深夜消息内容：“简笔全炸了”</div>
+                    <div class="owl-note">注：熬夜时段定义为23:00-06:00，已考虑不同时区</div>
+                </div>
+            </div>
+            <div class="night-owl-item">
+                <div class="owl-crown" title="其他深夜活跃者">🦉</div>
+                <div class="owl-info">
+                    <div class="owl-name">24信管周鸿运</div>
+                    <div class="owl-title">其他深夜活跃者</div>
+                    <div class="owl-time">最晚活跃时间：04:08:48</div>
+                    <div class="owl-messages">深夜消息数：[数量]</div>
+                    <div class="owl-last-message">最后一条深夜消息内容：[未知]</div>
+                    <div class="owl-note">注：本数据为模板中提供的示例，真实数据需提供聊天记录。</div>
+                </div>
+            </div>
+        </div>
+        <p class="disclaimer">注：上述消息数量及最后一条消息内容为示例数据，真实熬夜冠军数据需提供详细聊天记录进行统计。</p>
+    </section>
+
+    <!-- 8. 词云 -->
+    <section class="word-cloud">
+        <h2>热门词云</h2>
+        <div class="cloud-container">
+            <!-- 词云容器 - 现在是云朵样式 -->
+            <div class="cloud-wordcloud" id="word-cloud">
+                <!-- 词云通过视觉化方式呈现了报告周期内群聊中最常提及的关键词，能够快速概括群聊的核心主题和关注焦点。词汇的大小代表其提及频率，颜色则可用于区分不同的话题类别。 -->
+                <!-- 注：以下词汇为示例，实际词云将根据聊天记录生成。 -->
+                <span class="cloud-word" style="left: 50%; top: 30%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 38px; color: #00b4d8; font-weight: bold;">AI</span>
+                <span class="cloud-word" style="left: 30%; top: 45%; transform: translate(-50%, -50%) rotate(5deg); font-size: 32px; color: #4cc9f0; font-weight: bold;">学习</span>
+                <span class="cloud-word" style="left: 70%; top: 55%; transform: translate(-50%, -50%) rotate(-5deg); font-size: 28px; color: #f25f4c;">思考</span>
+                <span class="cloud-word" style="left: 40%; top: 65%; transform: translate(-50%, -50%) rotate(10deg); font-size: 24px; color: #ff8906;">宿舍</span>
+                <span class="cloud-word" style="left: 60%; top: 20%; transform: translate(-50%, -50%) rotate(-10deg); font-size: 22px; color: #e53170;">考试</span>
+                <span class="cloud-word" style="left: 20%; top: 25%; transform: translate(-50%, -50%) rotate(15deg); font-size: 20px; color: #7209b7;">动画表情</span>
+                <span class="cloud-word" style="left: 80%; top: 35%; transform: translate(-50%, -50%) rotate(-8deg); font-size: 20px; color: #3da9fc;">商业</span>
+                <span class="cloud-word" style="left: 15%; top: 60%; transform: translate(-50%, -50%) rotate(20deg); font-size: 18px; color: #00b4d8;">哈</span>
+                <span class="cloud-word" style="left: 85%; top: 70%; transform: translate(-50%, -50%) rotate(0deg); font-size: 16px; color: #f25f4c;">朋友</span>
+                <span class="cloud-word" style="left: 10%; top: 80%; transform: translate(-50%, -50%) rotate(-20deg); font-size: 16px; color: #e53170;">赚钱</span>
+            </div>
+            
+            <div class="cloud-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #00b4d8;"></span>
+                    <span class="legend-label">AI与成长</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #f25f4c;"></span>
+                    <span class="legend-label">日常与生活</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #7209b7;"></span>
+                    <span class="legend-label">情绪与互动</span>
+                </div>
+            </div>
+        </div>
+        <p class="disclaimer">注：本词云为基于模板中常用词汇的示意图，真实词云需提供详细聊天记录进行生成。</p>
+    </section>
+
+    <!-- 9. 页面底部 -->
+    <footer>
+        <p>数据来源：华理地瓜大家庭群聊记录</p>
+        <p>生成时间：2025年06月18日 [当前时间]</p>
+        <p>统计周期：2025年01月01日 - 2025年06月18日</p>
+        <p class="disclaimer">免责声明：本报告内容基于群聊公开讨论，如有不当内容或侵权问题请联系管理员处理。部分数据为示例。</p>
+    </footer>
+</body>
+</html>
